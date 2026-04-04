@@ -1,4 +1,5 @@
 import { AsyncDatabase } from "promised-sqlite3";
+import postNote from "./postNote";
 
 export default async function Write() {
   async function getUsers() {
@@ -12,7 +13,7 @@ export default async function Write() {
     <div>
       <fieldset className="note-fieldset">
         <legend>Write a new note</legend>
-        <form className="note-form">
+        <form action={postNote} className="note-form">
           <label>
             From
             <select name="from_user">
@@ -25,7 +26,7 @@ export default async function Write() {
           </label>
           <label>
             To
-            <select name="to_user">
+            <select name="to_user" defaultValue={2}>
               {users.map((user) => (
                 <option key={user.id} value={user.id}>
                   {user.name}
